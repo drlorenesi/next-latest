@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 // All packages except `@mantine/hooks` require styles imports
 import "@mantine/core/styles.css";
 import "./globals.css";
+//Components
+import Shell from "./components/shell/Shell";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,7 +23,9 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
       <body>
-        <MantineProvider>{children}</MantineProvider>
+        <MantineProvider>
+          <Shell>{children}</Shell>
+        </MantineProvider>
       </body>
     </html>
   );
