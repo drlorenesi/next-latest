@@ -1,5 +1,16 @@
-import { ActionIcon, AppShell, NavLink, ScrollArea } from "@mantine/core";
-import { IconGraph, IconForms, IconTable } from "@tabler/icons-react";
+import {
+  ActionIcon,
+  AppShell,
+  NavLink,
+  ScrollArea,
+  ThemeIcon,
+} from "@mantine/core";
+import {
+  IconForms,
+  IconGauge,
+  IconGraph,
+  IconTable,
+} from "@tabler/icons-react";
 
 import classes from "./NavbarLinksGroup.module.css";
 
@@ -7,6 +18,30 @@ export default function NavBarLinksGroup() {
   return (
     <AppShell.Navbar p="md">
       <AppShell.Section grow component={ScrollArea}>
+        <NavLink
+          href="/"
+          label="Dashboard"
+          leftSection={
+            <ThemeIcon variant="light" size="sm">
+              <IconGauge style={{ width: "70%", height: "70%" }} />
+            </ThemeIcon>
+          }
+        />
+        {/* Charts */}
+        <NavLink
+          label="Charts"
+          leftSection={
+            <ThemeIcon variant="filled" color="cyan" size="sm">
+              <IconGraph style={{ width: "70%", height: "70%" }} />
+            </ThemeIcon>
+          }
+        >
+          <NavLink
+            className={classes.navLink}
+            label="Dates"
+            href="/reports/dates"
+          />
+        </NavLink>
         {/* Reports */}
         <NavLink
           label="Reports"
