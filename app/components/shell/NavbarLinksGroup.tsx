@@ -2,15 +2,121 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AppShell, NavLink, ScrollArea, ThemeIcon } from "@mantine/core";
+import {
+  AppShell,
+  NavLink,
+  ScrollArea,
+  ThemeIcon,
+  ThemeIconProps,
+} from "@mantine/core";
 import {
   IconForms,
   IconGauge,
   IconGraph,
   IconTable,
 } from "@tabler/icons-react";
-
 import classes from "./NavbarLinksGroup.module.css";
+
+// Define the types for navigation links
+interface NavLinkProps {
+  href?: string;
+  label: string;
+  icon?: React.ReactElement<ThemeIconProps>;
+  variant?: ThemeIconProps["variant"];
+  color?: ThemeIconProps["color"];
+  children?: NavLinkProps[];
+}
+
+// Define the navigation links data
+const navLinks: NavLinkProps[] = [
+  {
+    href: "/",
+    label: "Dashboard",
+    icon: <IconGauge style={{ width: "70%", height: "70%" }} />,
+    variant: "light",
+  },
+  {
+    label: "Forms",
+    icon: <IconForms style={{ width: "70%", height: "70%" }} />,
+    variant: "filled",
+    color: "grape",
+    children: [
+      { href: "/forms/dates", label: "Dates" },
+      { href: "/forms/numbers", label: "Numbers" },
+      { href: "/forms/mixed", label: "Mixed" },
+    ],
+  },
+  {
+    label: "Charts",
+    icon: <IconGraph style={{ width: "70%", height: "70%" }} />,
+    variant: "filled",
+    color: "cyan",
+    children: [{ href: "/charts/dates", label: "Dates" }],
+  },
+  {
+    label: "Tables",
+    icon: <IconTable style={{ width: "70%", height: "70%" }} />,
+    variant: "filled",
+    color: "indigo",
+    children: [
+      { href: "#", label: "First child link " },
+      { href: "#", label: "Second child link" },
+      { href: "#", label: "Third child linked" },
+    ],
+  },
+];
+
+// Create a reusable NavigationLink component
+const NavigationLink: React.FC<{ link: NavLinkProps; pathname: string }> = ({
+  link,
+  pathname,
+}) => {
+  const isActive = pathname === link.href;
+
+  if (link.children) {
+    return (
+      <NavLink
+        label={link.label}
+        leftSection={
+          <ThemeIcon variant={link.variant} color={link.color} size="sm">
+            {link.icon}
+          </ThemeIcon>
+        }
+      >
+        {link.children.map((childLink) => (
+          <NavLink
+            key={childLink.href}
+            className={classes.navLink}
+            label={childLink.label}
+            href={childLink.href || ""} // Handle undefined case
+            component={Link}
+            active={pathname === childLink.href}
+          />
+        ))}
+      </NavLink>
+    );
+  }
+
+  if (typeof link.href === "string") {
+    // Type guard
+    return (
+      <NavLink
+        href={link.href}
+        label={link.label}
+        leftSection={
+          <ThemeIcon variant={link.variant} color={link.color} size="sm">
+            {link.icon}
+          </ThemeIcon>
+        }
+        component={Link}
+        active={isActive}
+      />
+    );
+  }
+
+  // Handle undefined case
+  return null;
+};
 
 export default function NavBarLinksGroup() {
   const pathname = usePathname();
@@ -18,88 +124,13 @@ export default function NavBarLinksGroup() {
   return (
     <AppShell.Navbar p="md">
       <AppShell.Section grow component={ScrollArea}>
-        <NavLink
-          href="/"
-          label="Dashboard"
-          leftSection={
-            <ThemeIcon variant="light" size="sm">
-              <IconGauge style={{ width: "70%", height: "70%" }} />
-            </ThemeIcon>
-          }
-          component={Link}
-          active={pathname === "/"}
-        />
-        {/* Forms */}
-        <NavLink
-          label="Forms"
-          leftSection={
-            <ThemeIcon variant="filled" color="grape" size="sm">
-              <IconForms style={{ width: "70%", height: "70%" }} />
-            </ThemeIcon>
-          }
-        >
-          <NavLink
-            className={classes.navLink}
-            label="Dates"
-            href="/forms/dates"
-            component={Link}
-            active={pathname === "/forms/dates"}
+        {navLinks.map((link) => (
+          <NavigationLink
+            key={link.href || link.label}
+            link={link}
+            pathname={pathname}
           />
-          <NavLink
-            className={classes.navLink}
-            label="Numbers"
-            href="/forms/numbers"
-            component={Link}
-            active={pathname === "/forms/numbers"}
-          />
-          <NavLink
-            className={classes.navLink}
-            label="Mixed"
-            href="/forms/mixed"
-            component={Link}
-            active={pathname === "/forms/mixed"}
-          />
-        </NavLink>
-        {/* Charts */}
-        <NavLink
-          label="Charts"
-          leftSection={
-            <ThemeIcon variant="filled" color="cyan" size="sm">
-              <IconGraph style={{ width: "70%", height: "70%" }} stroke={1.5} />
-            </ThemeIcon>
-          }
-        >
-          <NavLink
-            className={classes.navLink}
-            label="Dates"
-            href="/reports/dates"
-          />
-        </NavLink>
-        {/* Tables */}
-        <NavLink
-          label="Tables"
-          leftSection={
-            <ThemeIcon variant="filled" color="indigo" size="sm">
-              <IconTable style={{ width: "70%", height: "70%" }} stroke={1.5} />
-            </ThemeIcon>
-          }
-        >
-          <NavLink
-            className={classes.navLink}
-            label="First child link"
-            href="#"
-          />
-          <NavLink
-            className={classes.navLink}
-            label="Second child link"
-            href="#"
-          />
-          <NavLink
-            className={classes.navLink}
-            label="Third child link"
-            href="#"
-          />
-        </NavLink>
+        ))}
       </AppShell.Section>
     </AppShell.Navbar>
   );
