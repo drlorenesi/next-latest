@@ -9,6 +9,7 @@ import {
   ThemeIcon,
   ThemeIconProps,
 } from "@mantine/core";
+// import { useDisclosure } from "@mantine/hooks";
 import {
   IconForms,
   IconGauge,
@@ -51,7 +52,7 @@ const navLinks: NavLinkProps[] = [
     icon: <IconGraph style={{ width: "70%", height: "70%" }} />,
     variant: "filled",
     color: "cyan",
-    children: [{ href: "/charts/dates", label: "Dates" }],
+    children: [{ href: "/charts/dates", label: "Chart" }],
   },
   {
     label: "Tables",
@@ -59,9 +60,9 @@ const navLinks: NavLinkProps[] = [
     variant: "filled",
     color: "indigo",
     children: [
-      { href: "#", label: "First child link " },
-      { href: "#", label: "Second child link" },
-      { href: "#", label: "Third child linked" },
+      { href: "#1", label: "First child link " },
+      { href: "#2", label: "Second child link" },
+      { href: "#3", label: "Third child linked" },
     ],
   },
 ];
@@ -113,7 +114,6 @@ const NavigationLink: React.FC<{ link: NavLinkProps; pathname: string }> = ({
       />
     );
   }
-
   // Handle undefined case
   return null;
 };
