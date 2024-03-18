@@ -1,13 +1,50 @@
 import Link from "next/link";
-import { Button } from "@mantine/core";
+import { Button, Title } from "@mantine/core";
 
 export default function Home() {
   return (
-    <main>
-      <h1>Hello</h1>
+    <>
+      <Title order={2}>Dashboard</Title>
+      <br />
       <Button component={Link} href="/hello">
         Next link button
       </Button>
-    </main>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut deserunt
+        provident fuga autem voluptates, nam impedit recusandae excepturi, animi
+        rem ut modi quaerat ipsam eum facere perspiciatis doloremque tempora
+        sint!
+      </p>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut deserunt
+        provident fuga autem voluptates, nam impedit recusandae excepturi, animi
+        rem ut modi quaerat ipsam eum facere perspiciatis doloremque tempora
+        sint!
+      </p>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut deserunt
+        provident fuga autem voluptates, nam impedit recusandae excepturi, animi
+        rem ut modi quaerat ipsam eum facere perspiciatis doloremque tempora
+        sint!
+      </p>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut deserunt
+        provident fuga autem voluptates, nam impedit recusandae excepturi, animi
+        rem ut modi quaerat ipsam eum facere perspiciatis doloremque tempora
+        sint!
+      </p>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut deserunt
+        provident fuga autem voluptates, nam impedit recusandae excepturi, animi
+        rem ut modi quaerat ipsam eum facere perspiciatis doloremque tempora
+        sint!
+      </p>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut deserunt
+        provident fuga autem voluptates, nam impedit recusandae excepturi, animi
+        rem ut modi quaerat ipsam eum facere perspiciatis doloremque tempora
+        sint!
+      </p>
+    </>
   );
 }

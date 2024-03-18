@@ -89,7 +89,7 @@ const Shell: React.FC<ShellProps> = ({ children, ...props }) => {
             <ActionIcon
               onClick={() =>
                 setColorScheme(
-                  computedColorScheme === "light" ? "dark" : "light",
+                  computedColorScheme === "light" ? "dark" : "light"
                 )
               }
               variant="default"
@@ -139,7 +139,7 @@ const Shell: React.FC<ShellProps> = ({ children, ...props }) => {
       <AppShell.Main
         style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
       >
-        {children}
+        <div style={{ flex: 1 }}>{children}</div>
         {/* 4. Footer */}
         <Footer />
       </AppShell.Main>
