@@ -15,6 +15,7 @@ import {
   IconGauge,
   IconGraph,
   IconTable,
+  IconLayoutGrid,
 } from "@tabler/icons-react";
 import classes from "./NavbarLinksGroup.module.css";
 
@@ -63,6 +64,16 @@ const navLinks: NavLinkProps[] = [
       { href: "#1", label: "First child link " },
       { href: "#2", label: "Second child link" },
       { href: "#3", label: "Third child linked" },
+    ],
+  },
+  {
+    label: "Layouts",
+    icon: <IconLayoutGrid style={{ width: "70%", height: "70%" }} />,
+    variant: "filled",
+    color: "green",
+    children: [
+      { href: "/layouts/layout1", label: "Layout 1" },
+      { href: "/layouts/layout2", label: "Layout 2" },
     ],
   },
 ];
