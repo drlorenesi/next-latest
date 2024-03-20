@@ -5,7 +5,6 @@ export default function Home() {
   return (
     <>
       <Title order={2}>Dashboard</Title>
-      <br />
       <Button component={Link} href="/hello">
         Next link button
       </Button>

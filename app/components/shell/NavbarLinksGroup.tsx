@@ -44,8 +44,8 @@ const navLinks: NavLinkProps[] = [
     color: "grape",
     children: [
       { href: "/forms/dates", label: "Dates" },
+      { href: "/forms/text", label: "Text" },
       { href: "/forms/numbers", label: "Numbers" },
-      { href: "/forms/mixed", label: "Mixed" },
     ],
   },
   {
